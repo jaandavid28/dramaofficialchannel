@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DRAMA OFFICIAL</title>
+
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+<style>
+  /* Reset and basic styles */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  body.dark-mode {
+    background: #121212;
+    color: #ddd;
+  }
+  header {
+    background: rgba(0,95,115,0.85);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+  }
+  nav {
+    background: rgba(10,147,150,0.85);
+    padding: 10px;
+    text-align: center;
+  }
+  nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  nav a:hover {
+    background-color: #94d2bd;
+    color: #004d40;
+  }
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown > a::after {
+    content: " ▼";
+    font-size: 0.7em;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background: rgba(10,147,150,0.9);
+    min-width: 160px;
+    border-radius: 5px;
+    z-index: 10;
+  }
+  .dropdown-content a {
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #94d2bd;
+    color: #004d40;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  section {
+    background: rgba(255,255,255,0.9);
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ccc;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  body.dark-mode section {
+    background: #222;
+    color: #ddd;
+    box-shadow: 0 0 15px #555;
+  }
+  footer {
+    background: rgba(0,95,115,0.85);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 100%;
+  }
+  /* Video Section */
+  #video video {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  /* Search bar */
+  .search-container {
+    text-align: center;
+    margin: 15px 0;
+  }
+  .search-container input[type="search"] {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    border: 2px solid #0a9396;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  /* Dark mode toggle button */
+  .dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #0a9396;
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 15;
+  }
+  .dark-mode-toggle:hover {
+    background-color: #94d2bd;
+    color: #004d40;
+  }
+  /* Social icons */
+  .social-icons {
+    text-align: center;
+    margin: 15px 0;
+  }
+  .social-icons a {
+    color: #0a9396;
+    margin: 0 12px;
+    font-size: 28px;
+    transition: color 0.3s;
+  }
+  .social-icons a:hover {
+    color: #94d2bd;
+  }
+  /* Contact form */
+  form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+  }
+  form input, form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+  }
+  form button {
+    background-color: #0a9396;
+    border: none;
+    padding: 10px 18px;
+    color: white;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  form button:hover {
+    background-color: #94d2bd;
+    color: #004d40;
+  }
+  /* Language switcher */
+  .lang-switch {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 15;
+  }
+  .lang-switch select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  /* Responsive */
+  @media(max-width: 600px){
+    nav {
+      padding: 10px 5px;
+    }
+    nav a {
+      margin: 0 7px;
+      padding: 6px 8px;
+      font-size: 14px;
+    }
+    .dark-mode-toggle, .lang-switch {
+      top: 10px;
+      padding: 6px 10px;
+    }
+    .search-container input[type="search"] {
+      width: 95%;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">Dark Mode</button>
+
+  <div class="lang-switch">
+    <select id="language" aria-label="Language Switcher">
+      <option value="en" selected>English</option>
+      <option value="bn">বাংলা</option>
+    </select>
+  </div>
+
+  <h1>Welcome to DRAMA OFFICIAL</h1>
+</header>
+
+<nav>
+  <a href="#home"><i class="fas fa-home"></i> Home</a>
+  <div class="dropdown">
+    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+    <div class="dropdown-content">
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Search -->
+<div class="search-container">
+  <input type="search" id="searchInput" placeholder="Search dramas or videos..." aria-label="Search">
+</div>
+
+<main>
+
+  <section id="home">
+    <h2>Home page</h2>
+
+    <section id="video">
+      <h3>How to Download DRAMA OFFICIAL video</h3>
+      <video controls>
+        <source src="How to Download DRAMA OFFICIAL video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </section>
+
+    <p>Watch my latest video here: <a href="https://t.me/dramalover287689" target="_blank" rel="noopener noreferrer">Join</a></p>
+
+    <!-- Social media icons -->
+    <div class="social-icons" aria-label="Social media links">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Welcome to my website!</p>
+    <p>
+      I’m passionate about sharing the best <strong>Korean and Chinese dramas</strong>, especially
+      <strong>Hindi and Urdu dubbed versions</strong>, with fellow fans who love international content in their own language.
+    </p>
+    <p>Here you will find:</p>
+    <ul>
+      <li>Popular Korean & Chinese series</li>
+      <li>Hindi and Urdu dubbed dramas</li>
+      <li>Romantic, action, comedy & more genres</li
